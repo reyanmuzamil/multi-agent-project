@@ -1,31 +1,27 @@
-# 1. System & Operational Tools
+#  System & Operational Tools
 import os
 import json
 from typing import Dict, Any, List
 
-# 2. Environment Configuration
+#  Environment Configuration
 from dotenv import load_dotenv
-
-# --- BULLETPROOF ENVIRONMENT LOADING ---
-# Forces Python to look into the explicit folder containing this file for variables
 base_dir = os.path.dirname(os.path.abspath(__file__))
 env_path = os.path.join(base_dir, ".env")
 load_dotenv(dotenv_path=env_path, override=True)
 
-# 3. Native Third-Party Web Search Client Interfaces
 try:
     from tavily import TavilyClient
 except ImportError:
     print("[Researcher Agent] Warning: Tavily library not found in local site-packages.")
     TavilyClient = None
 
-import requests  # Required to make raw HTTP GET connections directly to NewsAPI
+import requests  # for news api 
 
-# 4. Local Vector Database Infrastructure (Modern LangChain Ecosystem)
+# 4. Local Vector Database Infrastructure 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
-# 5. Shared Project State Architecture Contract
+#Shared Project State Architecture Contract
 from state import AgentState
 
 # Pull explicit API settings
@@ -46,6 +42,7 @@ def researcher_agent(state: AgentState) -> dict:
     collection_name = "gpu_specs_collection"
     
     try:
+        #v=connecting to our vector database 
         embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         vector_db = Chroma(
             persist_directory=persistent_db_directory,
@@ -53,13 +50,12 @@ def researcher_agent(state: AgentState) -> dict:
             collection_name=collection_name
         )
     except Exception as db_init_err:
-        print(f"❌ DB Initialization failure: {db_init_err}")
+        print(f" DB Initialization failure: {db_init_err}")
         vector_db = None
      
     # Getting the subquestions 
     questions = state.get("sub_questions", [])
     new_research_payloads = []
-     
     for question in questions:
         print(f"\nProcessing Sub-Question: '{question}'")
         
