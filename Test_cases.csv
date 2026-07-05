@@ -1,0 +1,4 @@
+user_query,ground_truth
+"What is the memory bandwidth spec of NVIDIA Blackwell compared to the rumors online?","The official memory bandwidth of NVIDIA Blackwell is 8.0 TB/s. Online rumors previously speculated speeds up to 10 TB/s."
+"AI data centers cooling infrastructure trends","AI data centers are shifting heavily toward liquid cooling (such as direct-to-chip or immersion cooling) due to high heat density from massive GPU clusters."
+"NVIDIA Blackwell vs competitors AMD Instinct MI325X and Intel Gaudi 3 architecture differences","NVIDIA Blackwell uses a dual-die chiplet design with HBM3e memory scaling up to 8.0 TB/s bandwidth. AMD's Instinct MI325X counters with massive HBM3e capacity (up to 288GB) and high bandwidth, while Intel's Gaudi 3 focuses on cost-to-performance efficiency utilizing Ethernet-based scaling rather than proprietary interconnect fabrics."

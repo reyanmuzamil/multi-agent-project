@@ -47,6 +47,7 @@ def planner_agent(state: AgentState) -> dict:
                 "CRITICAL: You must return ONLY a raw JSON array of strings. Do not include any introductory text, markdown formatting blocks (like ```json), or explanatory footnotes.\n"
                 "Example Output:\n"
                 "[\"What are the specific FP4 performance metrics of NVIDIA Blackwell?\", \"What is the peak memory bandwidth of the AMD MI300X?\"]"
+                "When creating comparative research questions, always generate separate, explicit sub-questions for each competitor brand mentioned (e.g., instead of asking for 'GPU market shares', plan one question for 'NVIDIA market share' and a separate question for 'AMD discrete GPU market share data')."
             )),
             ("user", "Deconstruct this query into research sub-questions: {query}")
         ])
